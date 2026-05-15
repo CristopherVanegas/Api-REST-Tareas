@@ -27,3 +27,38 @@ docs: [https://www.django-rest-framework.org/]
 Habran dos servidores, tendremos que autorizar que servidores se comunicaran.
 El modulo es el siguiente
 `pip install django-cors-headers`
+
+
+---
+
+# Modelo de tareas
+
+A travez de una clase, django utiliza su ORM e interactua con la base de datos.
+
+para crear las migraciones de todos los modulos
+`python manage.py makemigrations`
+
+para un solo modulo
+`python manage.py makemigrations [modulo]`
+
+y para ejecutarlas
+`python manage.py migrate`
+o `python manage.py migrate [modulo]`
+
+panel administrador
+http://127.0.0.1:8000/admin
+
+`python manage.py createsuperuser` para crear un usuario por primera vez.
+
+
+Para agregar el proyecto dentro del panel se hace agregando las respectivas lineas en admin.py del modulo que se desea agregar.
+
+```
+from django.contrib import admin
+from .models import Task
+# Register your models here.
+
+
+admin.site.register(Task)
+```
+
