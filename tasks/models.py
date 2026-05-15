@@ -11,3 +11,5 @@ class Task(models.Model):
   # para mostrar el titulo en cada registro
   def __str__(self):
     return self.title
+  
+  

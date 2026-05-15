@@ -22,7 +22,8 @@ para hacer migracioens asi como en laravel
 
 # DJANGO REST FRAMEWORK
 
-docs: [https://www.django-rest-framework.org/]
+docs: [https://www.django-rest-framework.org/],
+[https://pypi.org/project/django-cors-headers/]
 
 Habran dos servidores, tendremos que autorizar que servidores se comunicaran.
 El modulo es el siguiente
@@ -62,3 +63,8 @@ from .models import Task
 admin.site.register(Task)
 ```
 
+---
+
+ahora elegiremos que campos seran guardados en json o serializados en objetos para ser convertidos en un queryset (tipo de dato antiguo que utiliza django)
+
+toca crear el `serializer.py`
