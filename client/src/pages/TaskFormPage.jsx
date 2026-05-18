@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { createTask, deleteTask } from "../api/task.api";
+import { createTask, deleteTask, updateTask, getTask } from "../api/task.api";
 import { useNavigate, useParams } from "react-router-dom";
 
 export function TaskFormPage() {
@@ -7,6 +8,7 @@ export function TaskFormPage() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue
   } = useForm();
 
   const navigate = useNavigate();
@@ -14,12 +16,25 @@ export function TaskFormPage() {
 
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
-      console.log("actualizando");
+      updateTask(params.id, data)
     } else {
       await createTask(data);
-    } 
+    }
     navigate("/tasks");
   });
+
+  useEffect(() => {
+    async function loadTask() {
+      if (params.id) {
+        const res = await getTask(params.id);
+        setValue('title', res.data.title)
+        setValue('description', res.data.description)
+        console.log(res);
+      }
+    }
+
+    loadTask();
+  }, []);
 
   return (
     <div>
