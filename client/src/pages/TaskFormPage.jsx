@@ -52,43 +52,53 @@ export function TaskFormPage() {
   }, []);
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div className="max-w-xl mx-auto">
+      <form onSubmit={onSubmit} className="max-w-md mx-auto p-4 flex flex-col items-center">
         <input
           type="text"
           placeholder="Title"
           {...register("title", { required: true })}
+          className="bg-zinc-700 p-3 rounded-lg block w-72 md:w-full mb-3"
         />
         {errors.title && <span>Title field is required!</span>}
         <textarea
           rows="3"
           id="Description"
+          placeholder="Your description here..."
           {...register("description", { required: true })}
+          className="bg-zinc-700 p-3 rounded-lg block w-72 md:w-full mb-3"
         />
         {errors.description && <span>Description field is required!</span>}
-        <button>Save</button>
-      </form>
 
-      {params.id && (
-        <button
-          onClick={async () => {
-            const accepted = window.confirm("are you sure?");
-            if (accepted) {
-              await deleteTask(params.id);
-              toast.success("¡Tarea eliminada con exito!", {
-                position: "bottom-right",
-                style: {
-                  background: "#101010",
-                  color: "#FFFFFF",
-                },
-              });
-              navigate("/tasks");
-            }
-          }}
-        >
-          Delete
-        </button>
-      )}
+        <div className="flex justify-around flex-wrap md:w-full" >
+          <button
+            className={`bg-indigo-500 p-3 rounded-lg block w-72 md:w-full mt-3`}
+          >
+            Save
+          </button>
+          {params.id && (
+            <button
+              className="bg-red-500 p-3 rounded-xl w-72 md:w-full mt-3"
+              onClick={async () => {
+                const accepted = window.confirm("are you sure?");
+                if (accepted) {
+                  await deleteTask(params.id);
+                  toast.success("¡Tarea eliminada con exito!", {
+                    position: "bottom-right",
+                    style: {
+                      background: "#101010",
+                      color: "#FFFFFF",
+                    },
+                  });
+                  navigate("/tasks");
+                }
+              }}
+            >
+              Delete
+            </button>
+          )}
+        </div>
+      </form>
     </div>
   );
 }
