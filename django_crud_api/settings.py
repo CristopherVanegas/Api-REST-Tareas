@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # cors auth
-CORS_ALLOWED_ORIGINS = []
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
 
 
 REST_FRAMEWORK = {
